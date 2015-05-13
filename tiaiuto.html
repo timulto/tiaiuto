@@ -3,12 +3,22 @@
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+  <h1>TiAiuto!</h1>
 
   {{> hello}}
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+
+    <p>Premi il pulsante <button>Aggiorna</button> per aggiornare la lista dei progetti aperti</p>
+    <ul>
+        {{#each progetti}} {{> progetto}} {{/each}}
+    </ul>
+</template>
+
+<template name="progetto">
+  <li>
+      <h3>{{titolo}}</h3>
+      <p>Orari: {{orari}}</p>
+  </li>
 </template>
