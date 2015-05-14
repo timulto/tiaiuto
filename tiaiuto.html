@@ -1,20 +1,22 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>tiaiuto</title>
+  <title>TiAiuto!</title>
 </head>
 
 <body>
 
     <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo">Logo</a>
+      <a id="logo-container" href="#" class="brand-logo">
+          <h5 class="header center teal-text text-lighten-2"><span style="padding-left: 2px; padding-right: 2px; background-color:#4db6ac; color: white">Ti</span><span style="background-color: ;color: black">Aiuto!</span></h5>
+      </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#">Contattaci</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
+        <li><a href="#">Contattaci</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     </div>
@@ -26,10 +28,10 @@
         <br><br>
         <h1 class="header center teal-text text-lighten-2"><span style="padding-left: 5px; padding-right: 5px; background-color:#4db6ac; color: white">Ti</span><span style="color: white">Aiuto!</span></h1>
         <div class="row center">
-          <h5 class="header col s12 light">Lista dei progetti aperti (aggiornata ogni 10 minuti da romaltruista.it)</h5>
+          <h5 class="header col s12 light">Libertà è partecipazione</h5>
         </div>
         <div class="row center">
-          <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Partecipa</a>
+          <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Iscriviti</a>
         </div>
         <br><br>
 
@@ -49,7 +51,7 @@
             <h2 class="center brown-text"><i class="mdi-image-flash-on"></i></h2>
             <h5 class="center">Partecipazione</h5>
 
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+            <p class="light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac.</p>
           </div>
         </div>
 
@@ -58,7 +60,7 @@
             <h2 class="center brown-text"><i class="mdi-social-group"></i></h2>
             <h5 class="center">Coinvolgimento</h5>
 
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+            <p class="light">Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie.</p>
           </div>
         </div>
 
@@ -67,7 +69,7 @@
             <h2 class="center brown-text"><i class="mdi-action-settings"></i></h2>
             <h5 class="center">Solidarietà</h5>
 
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
+            <p class="light"> Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
           </div>
         </div>
       </div>
@@ -75,30 +77,21 @@
     </div>
   </div>
 
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="center">
+            <h4>Opportunità aperte</h4>
+            <h5>fonte: romaltruista.it</h5>
         </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="background3.jpg" alt="Unsplashed background img 2"></div>
-  </div>
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row left">
+        <div class="row left"  style="display: inline">
         {{> listaProgetti}}
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
-  <div class="container">
+  <!--<div class="container">
     <div class="section">
 
       <div class="row">
@@ -122,7 +115,7 @@
       </div>
     </div>
     <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 3"></div>
-  </div>
+  </div>-->
 
   <footer class="page-footer teal">
     <div class="container">
@@ -188,13 +181,13 @@
 </template>
 
 <template name="progetto">
-  <li class="collection-item avatar">
+  <li class="collection-item">
       <span class="title" style="color: black;"><h5>{{titolo}}</h5></span>
-      <p>{{descrizione}}</p>
+      <p style="color: black;">{{descrizione}}</p>
       <p>Zona: {{zona}}</p>
       <p>Quando: {{quando}}</p>
       <p>Orari: {{orari}}</p>
       <p>Area: {{area}}</p>
-      <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
+      <!--<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>-->
   </li>
 </template>
