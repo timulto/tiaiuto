@@ -2,7 +2,7 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
-  Template.hello.helpers({
+  Template.listaProgetti.helpers({
     counter: function () {
       return Session.get('counter');
     },
@@ -11,7 +11,7 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.hello.events({
+  Template.listaProgetti.events({
     'click button': function () {
         console.log("eccomi");
         Meteor.call("getProgetti", function(err, res){
@@ -29,7 +29,10 @@ if (Meteor.isClient) {
             if (!err) {
                 Session.set("progetti", res);
             }
-        })
+        });
+
+        $('.button-collapse').sideNav();
+        $('.parallax').parallax();
     });
 }
 

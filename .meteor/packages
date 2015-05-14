@@ -13,3 +13,4 @@ meteorhacks:npm
 mrt:iconv-lite
 rebolon:http-plugin-encoding
 percolate:synced-cron
+materialize:materialize
