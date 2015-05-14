@@ -40,32 +40,6 @@ if (Meteor.isClient) {
 
 
 if (Meteor.isServer) {
-    var progettiArray;
-
-    function getProgetti() {
-        // meteor add http aldeed:http
-        // https://github.com/aldeed/meteor-http-extras/
-        // to fix encoding issues
-        var res = HTTP.getWithEncoding("http://www.romaltruista.it/calendario.asp", {encoding: {from: "iso-8859-1", to: "iso-8859-1"}});
-        // http://www.romaltruista.it/opportunita.asp
-        if (res.statusCode == 200) {
-            var $ = cheerio.load(res.content);
-            var progettiaperti = $('.attivita.progettoaperto');
-            var progetti = new Array();
-
-            console.log("scaricati progetti aperti %d", progettiaperti.length);
-            progettiaperti.each(function (i, elem) {
-                //console.log($(this).find('.titolo').text());
-                progetti.push({
-                    titolo: $(this).find('.titolo').text(),
-                    orari: $(this).find('.orari').text(),
-                });
-            });
-            return progetti;
-        } else {
-            return null;
-        }
-    }
 
     function getOpportunita() {
         var res = HTTP.getWithEncoding("http://www.romaltruista.it/opportunita.asp", {encoding: {from: "utf-8", to: "iso-8859-1"}});
@@ -83,6 +57,13 @@ if (Meteor.isServer) {
                     var orari = $(this.find('td[width="23%"]')[1]);
                     var titolo = $(area.find('span[style="font-weight: bold; font-size: 1em;"]'));
                     var descrizione = $(this.find('td[rowspan="2"]'));
+                    var linkDettaglio = $(this.find('img[style="cursor: pointer"]')).attr('onclick');
+
+                    /*
+                    <td align="right" style="font-size: 1em;">
+                        <img style="cursor: pointer" onclick="javascript:apriPopUp('opportunita_dettaglio.asp?idprogetto=13306&amp;wname='+window.name,'Dettaglio Progetto');" src="sites/default/themes/honbiro/opp_desc.jpg">
+                    </td>
+                    */
 
                     opportunitaArr.push({
                         titolo: titolo.text().trim(),
@@ -90,7 +71,12 @@ if (Meteor.isServer) {
                         zona: zona.text().trim(),
                         quando: quando.text().trim(),
                         orari: orari.text().trim(),
-                        descrizione: descrizione.text().trim()
+                        descrizione: descrizione.text().trim(),
+                        linkDettaglio: "http://www.romaltruista.it/" +
+                                        linkDettaglio.substring(
+                                            "javascript:apriPopUp('".length,
+                                            linkDettaglio.indexOf('&wname')
+                                        )
                     });
                 }
             });
@@ -104,7 +90,7 @@ if (Meteor.isServer) {
       name: 'Crawling progetti',
       schedule: function(parser) {
         // parser is a later.parse object
-        return parser.text('every 10 minutes');
+        return parser.text('every 2 hours');
       },
       job: function() {
           opps = getOpportunita();

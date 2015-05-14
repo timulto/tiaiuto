@@ -182,12 +182,25 @@
 
 <template name="progetto">
   <li class="collection-item">
-      <span class="title" style="color: black;"><h5>{{titolo}}</h5></span>
-      <p style="color: black;">{{descrizione}}</p>
-      <p>Zona: {{zona}}</p>
-      <p>Quando: {{quando}}</p>
-      <p>Orari: {{orari}}</p>
-      <p>Area: {{area}}</p>
+      <div class="row" style="margin-bottom: 0px">
+          <div class="col s9">
+              <span class="title" style="color: black;"><h5>{{titolo}}</h5></span>
+               <p style="color: black;">{{descrizione}}</p>
+              <blockquote>
+                  <span>Zona: {{zona}}</span><br />
+                  <span>Quando: {{quando}}</span><br />
+                  <span>Orari: {{orari}}</span><br />
+                  <span>Area: {{area}}</span>
+              </blockquote>
+          </div>
+          <div class="col right valign-wrapper" style="height: 100%">
+              <p class="right-align valign">
+                <a href="{{linkDettaglio}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
+                    <i class="mdi-action-open-in-new right"></i>
+                </a>
+              </p>
+          </div>
+      </div>
       <!--<a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>-->
   </li>
 </template>
