@@ -7,8 +7,9 @@
 meteor-platform
 autopublish
 insecure
-meteorhacks:npm
 http
-
-npm-container
 mrt:cheerio
+meteorhacks:npm
+mrt:iconv-lite
+rebolon:http-plugin-encoding
+percolate:synced-cron

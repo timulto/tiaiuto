@@ -10,7 +10,7 @@
 
 <template name="hello">
 
-    <p>Premi il pulsante <button>Aggiorna</button> per aggiornare la lista dei progetti aperti</p>
+    <p>Lista dei progetti aperti (aggiornata ogni 10 minuti da romaltruista.it)</p>
     <ul>
         {{#each progetti}} {{> progetto}} {{/each}}
     </ul>
@@ -19,6 +19,10 @@
 <template name="progetto">
   <li>
       <h3>{{titolo}}</h3>
+      <p>{{descrizione}}</p>
+      <p>Zona: {{zona}}</p>
+      <p>Quando: {{quando}}</p>
       <p>Orari: {{orari}}</p>
+      <p>Area: {{area}}</p>
   </li>
 </template>
