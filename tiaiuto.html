@@ -69,7 +69,7 @@
             <h2 class="center brown-text"><i class="mdi-action-settings"></i></h2>
             <h5 class="center">Solidarietà</h5>
 
-            <p class="light"> Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+            <p class="light">Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
           </div>
         </div>
       </div>
@@ -82,40 +82,13 @@
       <div class="row">
         <div class="center">
             <h4>Opportunità aperte</h4>
-            <h5>fonte: romaltruista.it</h5>
         </div>
         <div class="row left"  style="display: inline">
-        {{> listaProgetti}}
+        {{> listaOpportunità}}
         </div>
       </div>
     </div>
   </div>
-
-  <!--<div class="container">
-    <div class="section">
-
-      <div class="row">
-        <div class="col s12 center">
-          <h3><i class="mdi-content-send brown-text"></i></h3>
-          <h4>Contact Us</h4>
-          <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="parallax-container valign-wrapper">
-    <div class="section no-pad-bot">
-      <div class="container">
-        <div class="row center">
-          <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-        </div>
-      </div>
-    </div>
-    <div class="parallax"><img src="background2.jpg" alt="Unsplashed background img 3"></div>
-  </div>-->
 
   <footer class="page-footer teal">
     <div class="container">
@@ -154,33 +127,15 @@
     </div>
   </footer>
 
-
-<!--
-    <div class="container">
-        <div class="row">
-          <div class="col s12 m9">
-            <h1 class="header center-on-small-only">TiAiuto!</h1>
-            <h4 class ="light red-text text-lighten-4 center-on-small-only">Lista dei progetti aperti (aggiornata ogni 10 minuti da romaltruista.it)</h4>
-          </div>
-          <div class="col s12 m3">
-            <div class="buysellads-header center-on-small-only">
-                <p></p>
-            </div>
-            {{> listaProgetti}}
-          </div>
-        </div>
-    </div>
--->
-
 </body>
 
-<template name="listaProgetti">
+<template name="listaOpportunità">
     <ul class="collection">
-        {{#each progetti}} {{> progetto}} {{/each}}
+        {{#each listaOpportunità}} {{> opportunità}} {{/each}}
     </ul>
 </template>
 
-<template name="progetto">
+<template name="opportunità">
   <li class="collection-item">
       <div class="row" style="margin-bottom: 0px">
           <div class="col s9">
@@ -190,12 +145,14 @@
                   <span>Zona: {{zona}}</span><br />
                   <span>Quando: {{quando}}</span><br />
                   <span>Orari: {{orari}}</span><br />
-                  <span>Area: {{area}}</span>
+                  <span>Area: {{area}}</span> -
+                  <span>Fonte: {{fonte}}</span>
+                  <span>(aggiornato il: {{aggiornamento}})</span>
               </blockquote>
           </div>
           <div class="col right valign-wrapper" style="height: 100%">
               <p class="right-align valign">
-                <a href="{{linkDettaglio}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
+                <a href="{{url}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
                     <i class="mdi-action-open-in-new right"></i>
                 </a>
               </p>
