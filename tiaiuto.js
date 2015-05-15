@@ -5,15 +5,31 @@ Tempo = {
     ieri: function() {
         return new Date( Date.now() - 24*60*60*1000 );
     },
+    oggi: function() {
+        return new Date();
+    },
+    domani: function() {
+        return new Date( Date.now() + 24*60*60*1000 );
+    },
+    dopoDomani: function() {
+        return new Date( Date.now() + 48*60*60*1000 );
+    },
     unOraFa: function() {
         return new Date( Date.now() - 60*60*1000 );
     },
     formatta: function(data) {
         return moment(data).format('DD/MM/YYYY HH:mm');
+    },
+    aStringa: function(data) {
+        return moment(data).format('DD/MM/YYYY');
     }
 }
 
 if (Meteor.isClient) {
+
+    Template.registerHelper('nospaces', function(str) {
+      return str.split(' ').join('-').split('\'').join('');
+    });
 
     Template.registerHelper('formatta', function(data) {
       return Tempo.formatta(data);
@@ -21,19 +37,47 @@ if (Meteor.isClient) {
 
     Template.listaOpportunità.helpers({
         listaOpportunità: function () {
-             return Opportunità.find({aggiornamento: { $gte: Tempo.unOraFa() }});
+            // pagination
+            // meteor add alethes:pages
+            // https://atmospherejs.com/alethes/pages
+            var filter = {
+                aggiornamento: { $gte: Tempo.unOraFa() }
+            }
+            if (Session.get("area")) {
+                filter.area = Session.get("area");
+            }
+            var res = Opportunità.find(filter, { limit: 5 });
+            return res;
+        },
+        aree: function(){
+            return Session.get("aree");
         }
     });
 
     Template.listaOpportunità.events({
-        'click button': function () {
-            console.log("eccomi");
+        'click .area': function (evt) {
+            var thisBtn = $(evt.target)
+            Session.set("area", thisBtn.text());
+            $('.area').each(function( index ) {
+                $(this).css("color", "white");
+            });
+            thisBtn.css("color", "teal");
         }
     });
 
     Meteor.startup(function () {
-        $('.button-collapse').sideNav();
-        $('.parallax').parallax();
+        $(document).ready(function(){
+            $('.button-collapse').sideNav();
+            $('.parallax').parallax();
+            //$('select').material_select();
+        });
+        Opportunità.distinct("area", function(err, res){
+            if (err) {
+                console.error("error: %s", err.message);
+            } else {
+                Session.set("aree", res);
+            }
+        });
     });
 }
 
@@ -43,14 +87,16 @@ if (Meteor.isServer) {
         opportunità.aggiornamento = new Date();
         if (Opportunità.find({url: opportunità.url}).count() > 0) {
             Opportunità.remove({url: opportunità.url});
-//            console.log('removing existing %s', opportunità.url);
         }
         Opportunità.insert(opportunità);
-//        console.log('adding %s', opportunità.url);
     }
 
     function crawlRomaltruista() {
-        var res = HTTP.getWithEncoding("http://www.romaltruista.it/opportunita.asp", {encoding: {from: "utf-8", to: "iso-8859-1"}});
+        var res = HTTP.getWithEncoding("http://www.romaltruista.it/opportunita.asp" +
+                                       "?data_dal=" + Tempo.aStringa(Tempo.oggi()) +
+                                       "&data_al=" + Tempo.aStringa(Tempo.dopoDomani()), {
+                                          encoding: {from: "utf-8", to: "iso-8859-1"}
+                                       });
         if (res.statusCode == 200) {
             var $ = cheerio.load(res.content);
             var opportunita = $('table[width="100%"]');
@@ -98,6 +144,12 @@ if (Meteor.isServer) {
     });
 
     Meteor.startup(function () {
+
+        if (Opportunità.find({
+                aggiornamento: { $gte: Tempo.unOraFa() }
+            }).count() == 0)
+            crawlRomaltruista();
+
         SyncedCron.start();
 
 //        Meteor.methods({
