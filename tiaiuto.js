@@ -98,12 +98,11 @@ if (Meteor.isServer) {
     });
 
     Meteor.startup(function () {
-//        crawlRomaltruista();
         SyncedCron.start();
 
 //        Meteor.methods({
-//            getProgetti: function() {
-//                return opps;
+//            testMethod: function() {
+//                return val;
 //            }
 //        });
     });
