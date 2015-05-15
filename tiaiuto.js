@@ -50,6 +50,10 @@ if (Meteor.isServer) {
     }
 
     function crawlRomaltruista() {
+
+        // aggiungere ?data_dal=14/05/2015&data_al=18/05/2015
+        // vedere anche http://www.milanoaltruista.org/volontariato-Milano/
+
         var res = HTTP.getWithEncoding("http://www.romaltruista.it/opportunita.asp", {encoding: {from: "utf-8", to: "iso-8859-1"}});
         if (res.statusCode == 200) {
             var $ = cheerio.load(res.content);
