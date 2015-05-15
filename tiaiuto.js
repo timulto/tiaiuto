@@ -1,9 +1,27 @@
 Opportunità = new Mongo.Collection("opportunità");
 
+
+Tempo = {
+    ieri: function() {
+        return new Date( Date.now() - 24*60*60*1000 );
+    },
+    unOraFa: function() {
+        return new Date( Date.now() - 60*60*1000 );
+    },
+    formatta: function(data) {
+        return moment(data).format('DD/MM/YYYY HH:mm');
+    }
+}
+
 if (Meteor.isClient) {
+
+    Template.registerHelper('formatta', function(data) {
+      return Tempo.formatta(data);
+    });
+
     Template.listaOpportunità.helpers({
         listaOpportunità: function () {
-             return Opportunità.find({});
+             return Opportunità.find({aggiornamento: { $gte: Tempo.unOraFa() }});
         }
     });
 
@@ -80,7 +98,7 @@ if (Meteor.isServer) {
     });
 
     Meteor.startup(function () {
-        crawlRomaltruista();
+//        crawlRomaltruista();
         SyncedCron.start();
 
 //        Meteor.methods({
