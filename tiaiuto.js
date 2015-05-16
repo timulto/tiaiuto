@@ -1,6 +1,5 @@
 Opportunità = new Mongo.Collection("opportunità");
 
-
 Tempo = {
     ieri: function() {
         return new Date( Date.now() - 24*60*60*1000 );
@@ -25,6 +24,10 @@ Tempo = {
     }
 }
 
+var timeFilter = {
+    aggiornamento: { $gte: Tempo.unOraFa() }
+}
+
 if (Meteor.isClient) {
 
     Template.registerHelper('nospaces', function(str) {
@@ -40,11 +43,9 @@ if (Meteor.isClient) {
             // pagination
             // meteor add alethes:pages
             // https://atmospherejs.com/alethes/pages
-            var filter = {
-                aggiornamento: { $gte: Tempo.unOraFa() }
-            }
+            var filter = timeFilter;
             if (Session.get("area")) {
-                filter.area = Session.get("area");
+                filter =  _.extend(timeFilter, {area: Session.get("area")});
             }
             var res = Opportunità.find(filter, { limit: 5 });
             return res;
@@ -89,6 +90,13 @@ if (Meteor.isServer) {
             Opportunità.remove({url: opportunità.url});
         }
         Opportunità.insert(opportunità);
+    }
+
+    function cleanUpPastEvents() {
+        var count = Opportunità.remove({
+            aggiornamento: { $lte: Tempo.ieri() }
+        });
+        console.log("eliminati %d eventi scaduti", count);
     }
 
     function crawlRomaltruista() {
@@ -140,14 +148,15 @@ if (Meteor.isServer) {
       },
       job: function() {
           crawlRomaltruista();
+          cleanUpPastEvents();
       }
     });
 
     Meteor.startup(function () {
 
-        if (Opportunità.find({
-                aggiornamento: { $gte: Tempo.unOraFa() }
-            }).count() == 0)
+        cleanUpPastEvents();
+
+        if (Opportunità.find(timeFilter).count() == 0)
             crawlRomaltruista();
 
         SyncedCron.start();
