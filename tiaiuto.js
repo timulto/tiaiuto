@@ -13,6 +13,9 @@ Tempo = {
     dopoDomani: function() {
         return new Date( Date.now() + 48*60*60*1000 );
     },
+    giorniNelFuturo: function(giorni) {
+        return new Date( Date.now() + (giorni*24)*60*60*1000 );
+    },
     unOraFa: function() {
         return new Date( Date.now() - 60*60*1000 );
     },
@@ -102,7 +105,7 @@ if (Meteor.isServer) {
     function crawlRomaltruista() {
         var res = HTTP.getWithEncoding("http://www.romaltruista.it/opportunita.asp" +
                                        "?data_dal=" + Tempo.aStringa(Tempo.oggi()) +
-                                       "&data_al=" + Tempo.aStringa(Tempo.dopoDomani()), {
+                                       "&data_al=" + Tempo.aStringa(Tempo.giorniNelFuturo(3)), {
                                           encoding: {from: "utf-8", to: "iso-8859-1"}
                                        });
         if (res.statusCode == 200) {
