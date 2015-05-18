@@ -50,6 +50,7 @@ if (Meteor.isClient) {
                 $(this).css("color", "white");
             });
             thisBtn.css("color", "teal");
+            $('.collapsible-body').hide();
         }
     });
 
@@ -67,9 +68,17 @@ if (Meteor.isClient) {
 
     Meteor.startup(function () {
         $(document).ready(function(){
+            $('.collapsible').click(function(evt){
+                var b = $(evt.target).next('.collapsible-body');
+                $('.collapsible-body').hide();
+                if (b.is(":visible") === b.is(':not(:hidden)')) {
+                    b.show();
+                } else {
+                    b.hide();
+                }
+            });
             $('.button-collapse').sideNav();
             $('.parallax').parallax();
-            //$('select').material_select();
         });
         Opportunità.distinct("area", function(err, res){
             if (err) {
@@ -77,7 +86,6 @@ if (Meteor.isClient) {
             } else {
                 var aree = new Array();
                 _.each(res, function(elem){
-                    console.log(JSON.stringify(elem));
                     aree.push({ nome: elem });
                 });
                 Session.set("aree", aree);

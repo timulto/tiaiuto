@@ -65,21 +65,6 @@
         {{/each}}
 </template>
 
-<template name="listaOpportunità">
-
-    <div class="row center">
-        {{> pulsantiAree}}
-    </div>
-
-<!--
-    <div class="row">
-        {{> paginatore}}
-    </div>
--->
-    <ul class="collection">
-        {{#each listaOpportunità}} {{> opportunità}} {{/each}}
-    </ul>
-</template>
 
 <template name="paginatore">
     <ul class="pagination">
@@ -90,20 +75,33 @@
         <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
     </ul>
 </template>
+
+<template name="listaOpportunità">
+
+    <div class="row center">
+        {{> pulsantiAree}}
+    </div>
+    <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+        {{#each listaOpportunità}} {{> opportunità}} {{/each}}
+    </ul>
+</template>
+
 <template name="opportunità">
-  <li class="collection-item">
-      <div class="row" style="margin-bottom: 0px">
+  <li>
+      <div class="collapsible-header truncate"><i class="mdi-av-my-library-books"></i>{{titolo}}</div>
+          <!--<span class="title" style="color: black;">{{titolo}}<h5></h5></span>-->
+      <div class="collapsible-body">
           <div class="col s9">
-              <span class="title" style="color: black;"><h5>{{titolo}}</h5></span>
-               <p style="color: black;">{{descrizione}}</p>
-              <blockquote>
-                  <span>Zona: {{zona}}</span><br />
-                  <span>Quando: {{quando}}</span><br />
-                  <span>Orari: {{orari}}</span><br />
-                  <span>Area: {{area}}</span> -
-                  <span>Fonte: {{fonte}}</span>
-                  <span>(ultimo aggiornamento: {{formatta aggiornamento }})</span>
-              </blockquote>
+               <p style="color: black;">{{descrizione}}
+                  <blockquote>
+                      <span>Zona: {{zona}}</span><br />
+                      <span>Quando: {{quando}}</span><br />
+                      <span>Orari: {{orari}}</span><br />
+                      <span>Area: {{area}}</span> -
+                      <span>Fonte: {{fonte}}</span>
+                      <span>(ultimo aggiornamento: {{formatta aggiornamento }})</span>
+                  </blockquote>
+              </p>
           </div>
           <div class="col right valign-wrapper" style="height: 100%">
               <p class="right-align valign">
