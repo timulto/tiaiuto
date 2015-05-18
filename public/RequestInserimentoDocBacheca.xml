@@ -1,0 +1,37 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inp="http://www.tibco.com/schemas/BW-BachecaUtilities/Resources/schema/InputSchema.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inp:CommonRequest>
+         <inp:TemplateID>BDDUALCBAN</inp:TemplateID>
+         <!--Optional:-->
+         <inp:Cod_DocumentoDMS>BD0010</inp:Cod_DocumentoDMS>
+         <!--Optional:-->
+         <inp:Cod_DocumentoENG>00000</inp:Cod_DocumentoENG>
+         <!--Optional:-->
+         <inp:DescTemplate>Documento per Richiesta Contratto Carta DUAL</inp:DescTemplate>
+         <!--Optional:-->
+         <inp:PathPlugin>/Processes/Indra/Doc_CartaDualCban_plugin.process</inp:PathPlugin>
+         <!--Optional:-->
+         <inp:Firma>Y</inp:Firma>
+      </inp:CommonRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:inp="http://www.tibco.com/schemas/BW-BachecaUtilities/Resources/schema/InputSchema.xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <inp:CommonRequest>
+         <inp:TemplateID>BDDUALCEST</inp:TemplateID>
+         <!--Optional:-->
+         <inp:Cod_DocumentoDMS>BD0011</inp:Cod_DocumentoDMS>
+         <!--Optional:-->
+         <inp:Cod_DocumentoENG>00000</inp:Cod_DocumentoENG>
+         <!--Optional:-->
+         <inp:DescTemplate>Documento per Annullamento Contratto Carta DUAL</inp:DescTemplate>
+         <!--Optional:-->
+         <inp:PathPlugin>/Processes/Indra/Doc_CartaDualCest_plugin.process</inp:PathPlugin>
+         <!--Optional:-->
+         <inp:Firma>Y</inp:Firma>
+      </inp:CommonRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

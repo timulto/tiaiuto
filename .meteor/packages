@@ -17,3 +17,4 @@ materialize:materialize
 momentjs:moment
 mrt:mongodb-aggregation
 underscore
+accounts-password

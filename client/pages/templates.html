@@ -1,0 +1,117 @@
+<template name="navBarFixed">
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+
+      <a href="#" class="center hide-on-large-only">
+        <h5 style="margin-top: 0px; margin-bottom: -50px;">
+            <br />
+            <span style="padding-left: 2px; padding-right: 2px; background-color:#4db6ac; color: white">Ti</span><span style="color: black">Aiuto!</span>
+        </h5>
+      </a>
+
+      <ul class="right">
+        <li><a href="#"><i class="mdi-action-search left"></i><span class="hide-on-med-and-down">Cerca</span></a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav fixed">
+        <li>
+            <a href="#"><h5 class="header left teal-text text-lighten-2"><span style="padding-left: 2px; padding-right: 2px; background-color:#4db6ac; color: white">Ti</span><span style="color: black">Aiuto!</span></h5></a>
+        </li>
+        <li class="divider"></li>
+        <li><a href="#">Chi siamo</a></li>
+        <li><a href="#">Contattaci</a></li>
+        <li><a href="#">Iscriviti</a></li>
+        <li class="divider"></li>
+        {{> listaAree}}
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>
+</template>
+
+<template name="navBar">
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+
+      <a id="logo-container" href="#" class="brand-logo">
+          <h5 class="header center teal-text text-lighten-2"><span style="padding-left: 2px; padding-right: 2px; background-color:#4db6ac; color: white">Ti</span><span style="color: black">Aiuto!</span></h5>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Chi siamo</a></li>
+        <li><a href="#">Contattaci</a></li>
+        <li><a href="#">Iscriviti</a></li>
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Chi siamo</a></li>
+        <li><a href="#">Contattaci</a></li>
+        <li><a href="#">Iscriviti</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+    </div>
+  </nav>
+</template>
+
+<template name="listaAree">
+        <li><a class="area" style="font-weight: bold;" data="tutte" href="#tutte">Tutte le aree</a></li>
+        {{#each aree}}
+        <li><a class="area" data="{{nome}}" href="#{{nome}}">{{nome}}</a></li>
+        {{/each}}
+</template>
+
+<template name="pulsantiAree">
+        <a style="color: teal; margin-bottom: 5px" class="btn orange area" data="tutte">Tutte</a>
+        {{#each aree}}
+        <a style="margin-bottom: 5px" class="btn orange area" data="{{nome}}">{{nome}}</a>
+        {{/each}}
+</template>
+
+<template name="listaOpportunità">
+
+    <div class="row center">
+        {{> pulsantiAree}}
+    </div>
+
+<!--
+    <div class="row">
+        {{> paginatore}}
+    </div>
+-->
+    <ul class="collection">
+        {{#each listaOpportunità}} {{> opportunità}} {{/each}}
+    </ul>
+</template>
+
+<template name="paginatore">
+    <ul class="pagination">
+        <li class="disabled"><a href="#!"><i class="mdi-navigation-chevron-left"></i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!"><i class="mdi-navigation-chevron-right"></i></a></li>
+    </ul>
+</template>
+<template name="opportunità">
+  <li class="collection-item">
+      <div class="row" style="margin-bottom: 0px">
+          <div class="col s9">
+              <span class="title" style="color: black;"><h5>{{titolo}}</h5></span>
+               <p style="color: black;">{{descrizione}}</p>
+              <blockquote>
+                  <span>Zona: {{zona}}</span><br />
+                  <span>Quando: {{quando}}</span><br />
+                  <span>Orari: {{orari}}</span><br />
+                  <span>Area: {{area}}</span> -
+                  <span>Fonte: {{fonte}}</span>
+                  <span>(ultimo aggiornamento: {{formatta aggiornamento }})</span>
+              </blockquote>
+          </div>
+          <div class="col right valign-wrapper" style="height: 100%">
+              <p class="right-align valign">
+                <a href="{{url}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
+                    <i class="mdi-action-open-in-new right"></i>
+                </a>
+              </p>
+          </div>
+      </div>
+  </li>
+</template>
