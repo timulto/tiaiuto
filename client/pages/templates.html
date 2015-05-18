@@ -88,11 +88,11 @@
 
 <template name="opportunità">
   <li>
-      <div class="collapsible-header truncate"><i class="mdi-av-my-library-books"></i>{{titolo}}</div>
+      <div class="collapsible-header" style="overflow: hidden"><i class="mdi-av-my-library-books"></i>{{titolo}} - {{quando}}</div>
           <!--<span class="title" style="color: black;">{{titolo}}<h5></h5></span>-->
       <div class="collapsible-body">
-          <div class="col s9">
-               <p style="color: black;">{{descrizione}}
+          <div>
+              <p style="color: black;">{{descrizione}}
                   <blockquote>
                       <span>Zona: {{zona}}</span><br />
                       <span>Quando: {{quando}}</span><br />
@@ -101,15 +101,20 @@
                       <span>Fonte: {{fonte}}</span>
                       <span>(ultimo aggiornamento: {{formatta aggiornamento }})</span>
                   </blockquote>
+                  <div class="center">
+                      <a href="{{url}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
+                        <i class="mdi-action-open-in-new right"></i>
+                      </a>
+                  </div>
               </p>
           </div>
-          <div class="col right valign-wrapper" style="height: 100%">
+          <!--<div class="col right valign-wrapper" style="height: 100%">
               <p class="right-align valign">
                 <a href="{{url}}" target="_new" class="btn waves-effect waves-light teal lighten-1">Info
                     <i class="mdi-action-open-in-new right"></i>
                 </a>
               </p>
-          </div>
+          </div>-->
       </div>
   </li>
 </template>
