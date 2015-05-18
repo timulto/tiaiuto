@@ -15,3 +15,5 @@ rebolon:http-plugin-encoding
 percolate:synced-cron
 materialize:materialize
 momentjs:moment
+mrt:mongodb-aggregation
+underscore

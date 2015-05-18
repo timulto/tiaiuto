@@ -7,6 +7,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
+coffeescript@1.0.6
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
@@ -34,6 +35,7 @@ momentjs:moment@2.10.3
 mongo@1.1.0
 mrt:cheerio@0.3.2
 mrt:iconv-lite@1.0.2
+mrt:mongodb-aggregation@0.1.71
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 percolate:synced-cron@1.2.1
