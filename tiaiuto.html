@@ -22,13 +22,13 @@
     </div>
   </nav>
 
-  <div id="index-banner" class="parallax-container">
+  <div id="index-banner" class="parallax-container" style="border-bottom: 1px solid lightgray">
     <div class="section no-pad-bot">
       <div class="container">
         <br><br>
         <h1 class="header center teal-text text-lighten-2"><span style="padding-left: 5px; padding-right: 5px; background-color:#4db6ac; color: white">Ti</span><span style=" color: black">Aiuto!</span></h1>
         <div class="row center">
-          <h5 class="header col s12 light"><span style="color: teal">Libertà è partecipazione</span></h5>
+          <h5 class="header col s12 light"><span style="color: black">Libertà è partecipazione</span></h5>
         </div>
         <div class="row center">
           <a href="#" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Iscriviti</a>
@@ -129,13 +129,16 @@
 
 <template name="listaOpportunità">
     <div class="row center">
+        <a style="color: teal; margin-bottom: 5px" class="btn orange area" data="tutte">Tutte</a>
         {{#each aree}}
-        <a style="margin-bottom: 5px" class="btn orange area">{{this}}</a>
+        <a style="margin-bottom: 5px" class="btn orange area" data="{{this}}">{{this}}</a>
         {{/each}}
     </div>
+<!--
     <div class="row">
         {{> paginatore}}
     </div>
+-->
     <ul class="collection">
         {{#each listaOpportunità}} {{> opportunità}} {{/each}}
     </ul>

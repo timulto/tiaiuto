@@ -46,10 +46,16 @@ if (Meteor.isClient) {
             // pagination
             // meteor add alethes:pages
             // https://atmospherejs.com/alethes/pages
-            var filter = timeFilter;
-            if (Session.get("area")) {
-                filter =  _.extend(timeFilter, {area: Session.get("area")});
+            var filter = {
+                aggiornamento: timeFilter.aggiornamento
+            };
+
+            if (Session.get("area") && Session.get("area") != 'tutte') {
+                filter.area = Session.get("area");
+            } else {
+                delete filter.area;
             }
+
             var res = Opportunità.find(filter, { limit: 5 });
             return res;
         },
@@ -61,7 +67,7 @@ if (Meteor.isClient) {
     Template.listaOpportunità.events({
         'click .area': function (evt) {
             var thisBtn = $(evt.target)
-            Session.set("area", thisBtn.text());
+            Session.set("area", thisBtn.attr("data"));
             $('.area').each(function( index ) {
                 $(this).css("color", "white");
             });
