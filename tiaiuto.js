@@ -37,7 +37,7 @@ if (Meteor.isClient) {
             evt.preventDefault();
             $('#iscriviti').hide();
 //            $('#background').attr('src', 'images/partecipazione6.jpg');
-            $('#index-banner').css('min-height', '180px');
+            $('#index-banner').css('min-height', '150px');
         }
     });
 
