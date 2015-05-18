@@ -28,7 +28,7 @@ Tempo = {
 }
 
 var timeFilter = {
-    aggiornamento: { $gte: Tempo.unOraFa() }
+    aggiornamento: { $gte: Tempo.ieri() }
 }
 
 if (Meteor.isClient) {
@@ -95,7 +95,7 @@ if (Meteor.isServer) {
         Opportunità.insert(opportunità);
     }
 
-    function cleanUpPastEvents() {
+    function cancellaEventiPassati() {
         var count = Opportunità.remove({
             aggiornamento: { $lte: Tempo.ieri() }
         });
@@ -151,13 +151,13 @@ if (Meteor.isServer) {
       },
       job: function() {
           crawlRomaltruista();
-          cleanUpPastEvents();
+          cancellaEventiPassati();
       }
     });
 
     Meteor.startup(function () {
 
-        cleanUpPastEvents();
+        cancellaEventiPassati();
 
         if (Opportunità.find(timeFilter).count() == 0)
             crawlRomaltruista();
